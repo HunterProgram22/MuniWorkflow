@@ -4,7 +4,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 # Python modules
-import os, logging 
+import os, logging
 
 # Flask modules
 from flask               import render_template, request, url_for, redirect, send_from_directory
@@ -31,14 +31,14 @@ def logout():
 # Register a new user
 @app.route('/register.html', methods=['GET', 'POST'])
 def register():
-    
+
     # declare the Registration Form
     form = RegisterForm(request.form)
 
     msg     = None
     success = False
 
-    if request.method == 'GET': 
+    if request.method == 'GET':
 
         return render_template( 'accounts/register.html', form=form, msg=msg )
 
@@ -47,8 +47,8 @@ def register():
 
         # assign form data to variables
         username = request.form.get('username', '', type=str)
-        password = request.form.get('password', '', type=str) 
-        email    = request.form.get('email'   , '', type=str) 
+        password = request.form.get('password', '', type=str)
+        email    = request.form.get('email'   , '', type=str)
 
         # filter User out of database through username
         user = Users.query.filter_by(user=username).first()
@@ -58,8 +58,8 @@ def register():
 
         if user or user_by_email:
             msg = 'Error: User exists!'
-        
-        else:         
+
+        else:
 
             pw_hash = bc.generate_password_hash(password)
 
@@ -67,18 +67,18 @@ def register():
 
             user.save()
 
-            msg     = 'User created, please <a href="' + url_for('login') + '">login</a>'     
+            msg     = 'User created, please <a href="' + url_for('login') + '">login</a>'
             success = True
 
     else:
-        msg = 'Input error'     
+        msg = 'Input error'
 
     return render_template( 'accounts/register.html', form=form, msg=msg, success=success )
 
 # Authenticate user
 @app.route('/login.html', methods=['GET', 'POST'])
 def login():
-    
+
     # Declare the login form
     form = LoginForm(request.form)
 
@@ -90,13 +90,13 @@ def login():
 
         # assign form data to variables
         username = request.form.get('username', '', type=str)
-        password = request.form.get('password', '', type=str) 
+        password = request.form.get('password', '', type=str)
 
         # filter User out of database through username
         user = Users.query.filter_by(user=username).first()
 
         if user:
-            
+
             if bc.check_password_hash(user.password, password):
                 login_user(user)
                 return redirect(url_for('index'))
@@ -120,12 +120,13 @@ def index(path):
         if not path.endswith( '.html' ):
             path += '.html'
 
+        name = "Judge Hemmeter"
         # Serve the file (if exists) from app/templates/FILE.html
-        return render_template( 'home/' + path )
-    
+        return render_template( 'home/' + path, name=name )
+
     except TemplateNotFound:
         return render_template('home/page-404.html'), 404
-    
+
     except:
         return render_template('home/page-500.html'), 500
 

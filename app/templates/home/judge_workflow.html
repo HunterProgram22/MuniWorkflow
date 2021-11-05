@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Judge Hemmeter {% endblock %}
+{% block title %} {{ name }}{% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -18,7 +18,7 @@
                     <div class="col-lg-8">
                         <img src="/static/assets/img/team/hemmeter.jpg" class="rounded-circle img-thumbnail image-lg border-gray-300 p-2" alt="Profile image">
                         <div class="mt-4 mb-5">
-                            <h1 class="display-2 fw-normal my-4">Welcome Judge Hemmeter!</h1>
+                            <h1 class="display-2 fw-normal my-4">Welcome {{ name }}!</h1>
                         </div>
                         <div>
                           {% include 'includes/judge_content.html' %}
@@ -28,12 +28,6 @@
             </div>
         </div>
         <!-- End of Hero section -->
-
-        <!-- Section -->
-
-        <!-- Section -->
-
-
     </main>
 
     {% include 'includes/footer.html' %}

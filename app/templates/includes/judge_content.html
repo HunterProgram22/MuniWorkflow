@@ -3,6 +3,10 @@
 <ul>
   <li>File 1<button type="submit" onclick="open_file()">Open File</button></li>
 
-  <li>File 2</li>
+
+  <li><form action="/open_file" method="post">
+      <button type="submit" value="Send Email">Open File</button>
+    </form>
+  </li>
   <li>File 3</li>
 </ul>

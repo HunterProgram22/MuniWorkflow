@@ -130,6 +130,22 @@ def index(path):
     except:
         return render_template('home/page-500.html'), 500
 
+@app.route('/open_file', methods=['GET', 'POST'])
+def open_file():
+
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+
+    try:
+
+        return render_template('home/open_file.html')
+
+    except TemplateNotFound:
+        return render_template('home/page-404.html'), 404
+
+    except:
+        return render_template('home/page-500.html'), 500
+
 # Return sitemap
 @app.route('/sitemap.xml')
 def sitemap():

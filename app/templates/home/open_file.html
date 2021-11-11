@@ -1,0 +1,38 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} {{ name }}{% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main>
+
+        {% include 'includes/preloader.html' %}
+
+        <!-- Hero -->
+        <div class="section-header bg-primary-app pb-0">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <img src="/static/assets/img/team/hemmeter.jpg" class="rounded-circle img-thumbnail image-lg border-gray-300 p-2" alt="Profile image">
+                        <div class="mt-4 mb-5">
+                            <h1 class="display-2 fw-normal my-4">Welcome {{ name }}!</h1>
+                        </div>
+                        <div>
+                          OPEN FILE
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Hero section -->
+    </main>
+
+    {% include 'includes/footer.html' %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
